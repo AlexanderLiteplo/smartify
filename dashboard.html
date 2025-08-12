@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Grammar Tips Dashboard - Smartify</title>
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <header class="dashboard-header">
+        <h1>📚 Grammar Tips Dashboard</h1>
+        <p>
+          Review your personalized grammar tips to improve your writing skills
+        </p>
+      </header>
+
+      <div class="dashboard-controls">
+        <div class="search-container">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search tips..."
+            class="search-input"
+          />
+        </div>
+        <button id="clearAll" class="danger-btn">Clear All Tips</button>
+      </div>
+
+      <div id="tipsContainer" class="tips-container">
+        <div class="loading">Loading your grammar tips...</div>
+      </div>
+
+      <div id="emptyState" class="empty-state" style="display: none">
+        <p>🎯 No grammar tips yet!</p>
+        <p>
+          Start using Smartify to enhance your text and collect helpful grammar
+          tips.
+        </p>
+      </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+  </body>
+</html>

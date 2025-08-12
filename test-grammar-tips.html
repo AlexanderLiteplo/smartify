@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Test Grammar Tips - Smartify</title>
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        padding: 40px;
+        max-width: 800px;
+        margin: 0 auto;
+        background: #f9fafb;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .instructions {
+        background: #e8f4f8;
+        border: 1px solid #d1e7f0;
+        padding: 16px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+      }
+
+      .test-section {
+        background: white;
+        padding: 24px;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      .test-section h2 {
+        margin-top: 0;
+        color: #2563eb;
+        font-size: 18px;
+      }
+
+      .test-text {
+        background: #f3f4f6;
+        padding: 12px;
+        border-radius: 6px;
+        margin: 12px 0;
+        font-style: italic;
+        color: #4b5563;
+      }
+
+      .test-input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 14px;
+        margin: 12px 0;
+      }
+
+      .test-input:focus {
+        outline: none;
+        border-color: #2563eb;
+      }
+
+      .status {
+        margin-top: 20px;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+
+      .status.checking {
+        background: #fef3c7;
+        color: #92400e;
+      }
+
+      .status.success {
+        background: #d1fae5;
+        color: #065f46;
+      }
+
+      .status.error {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+
+      .test-result {
+        margin-top: 16px;
+        padding: 16px;
+        background: #f9fafb;
+        border-radius: 8px;
+        display: none;
+      }
+
+      .test-result h3 {
+        margin: 0 0 8px 0;
+        font-size: 16px;
+        color: #333;
+      }
+
+      .test-result p {
+        margin: 4px 0;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .grammar-tip-display {
+        background: #fef3c7;
+        border: 1px solid #fbbf24;
+        border-radius: 6px;
+        padding: 12px;
+        margin-top: 12px;
+      }
+
+      .grammar-tip-display h4 {
+        margin: 0 0 6px 0;
+        font-size: 14px;
+        color: #92400e;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🧠 Smartify Grammar Tips Test Page</h1>
+
+    <div class="instructions">
+      <p><strong>Instructions:</strong></p>
+      <ol>
+        <li>Make sure the Smartify extension is installed and active</li>
+        <li>Ensure you have an OpenAI API key configured in settings</li>
+        <li>Grammar tips should be enabled (default setting)</li>
+        <li>Click on any text input below to see the brain button</li>
+        <li>Enhance the text and check if grammar tips appear</li>
+      </ol>
+    </div>
+
+    <div class="test-section">
+      <h2>Test 1: Common Grammar Mistakes</h2>
+      <div class="test-text">Test text with intentional errors:</div>
+      <input
+        type="text"
+        class="test-input"
+        value="i think we should definetly go with there proposal its the best one"
+        data-test="grammar-errors"
+      />
+      <div class="status" style="display: none"></div>
+      <div class="test-result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>Test 2: Casual to Professional</h2>
+      <div class="test-text">Casual text needing enhancement:</div>
+      <textarea class="test-input" rows="3" data-test="casual-text">
+hey can u plz send me the files asap cuz i need them for tomorrows meeting thx</textarea
+      >
+      <div class="status" style="display: none"></div>
+      <div class="test-result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>Test 3: Punctuation and Clarity</h2>
+      <div class="test-text">Text with punctuation issues:</div>
+      <input
+        type="text"
+        class="test-input"
+        value="the meeting is at 3pm however I might be late"
+        data-test="punctuation"
+      />
+      <div class="status" style="display: none"></div>
+      <div class="test-result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>Grammar Tips Dashboard Status</h2>
+      <button id="checkTips">Check Stored Grammar Tips</button>
+      <div id="tipsCount" class="test-result"></div>
+    </div>
+
+    <script>
+      // Monitor for grammar tips in the modal
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node.className && node.className.includes("smartify-modal")) {
+              // Check for grammar tip
+              setTimeout(() => {
+                const grammarTip = node.querySelector(".smartify-grammar-tip");
+                const input = document.activeElement;
+                const section = input?.closest(".test-section");
+
+                if (section && grammarTip) {
+                  const status = section.querySelector(".status");
+                  const result = section.querySelector(".test-result");
+
+                  status.className = "status success";
+                  status.textContent = "✅ Grammar tip displayed successfully!";
+                  status.style.display = "block";
+
+                  const tipText =
+                    grammarTip.querySelector("p")?.textContent ||
+                    "No tip text found";
+
+                  result.innerHTML = `
+                    <h3>Grammar Tip Received:</h3>
+                    <div class="grammar-tip-display">
+                      <h4>💡 Grammar Tip</h4>
+                      <p>${tipText}</p>
+                    </div>
+                  `;
+                  result.style.display = "block";
+                } else if (section && !grammarTip) {
+                  const status = section.querySelector(".status");
+                  status.className = "status error";
+                  status.textContent = "❌ No grammar tip found in modal";
+                  status.style.display = "block";
+                }
+              }, 500);
+            }
+          });
+        });
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      // Monitor input focus
+      document.querySelectorAll(".test-input").forEach((input) => {
+        input.addEventListener("focus", () => {
+          const section = input.closest(".test-section");
+          const status = section.querySelector(".status");
+          status.className = "status checking";
+          status.textContent = "⏳ Waiting for enhancement...";
+          status.style.display = "block";
+        });
+      });
+
+      // Check stored grammar tips
+      document
+        .getElementById("checkTips")
+        .addEventListener("click", async () => {
+          if (chrome && chrome.storage) {
+            const { grammarTips = [] } = await chrome.storage.local.get([
+              "grammarTips",
+            ]);
+            const tipsDiv = document.getElementById("tipsCount");
+
+            tipsDiv.innerHTML = `
+            <h3>Stored Grammar Tips:</h3>
+            <p>Total tips saved: <strong>${grammarTips.length}</strong></p>
+            ${
+              grammarTips.length > 0
+                ? `
+              <p>Most recent tip (${new Date(grammarTips[0].date).toLocaleString()}):</p>
+              <div class="grammar-tip-display">
+                <h4>💡 ${grammarTips[0].grammarTip}</h4>
+                <p><em>Original:</em> ${grammarTips[0].originalText}...</p>
+                <p><em>Enhanced:</em> ${grammarTips[0].enhancedText}...</p>
+              </div>
+            `
+                : "<p>No tips stored yet. Try enhancing some text!</p>"
+            }
+          `;
+            tipsDiv.style.display = "block";
+          } else {
+            alert(
+              "Chrome storage API not available. Make sure you're viewing this through the extension."
+            );
+          }
+        });
+
+      console.log(
+        "Grammar Tips Test Page loaded. Focus on inputs to test the extension."
+      );
+    </script>
+  </body>
+</html>

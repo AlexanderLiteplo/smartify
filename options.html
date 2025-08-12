@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Smartify Settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Smartify Settings</h1>
+
+      <div class="settings-section">
+        <h2>OpenAI API Key</h2>
+        <p>
+          Enter your OpenAI API key to enable text enhancement. Your key is
+          stored locally and never sent anywhere except OpenAI.
+        </p>
+
+        <div class="input-group">
+          <input type="password" id="apiKey" placeholder="sk-..." />
+          <button id="toggleVisibility" class="toggle-btn">👁️</button>
+        </div>
+
+        <button id="save" class="save-btn">Save API Key</button>
+
+        <div id="status" class="status"></div>
+
+        <div class="settings-divider"></div>
+
+        <h2>Learning Features</h2>
+        <div class="toggle-setting">
+          <label class="toggle-label">
+            <input type="checkbox" id="grammarTips" checked />
+            <span class="toggle-slider"></span>
+            <span class="toggle-text">Enable Grammar Tips</span>
+          </label>
+          <p class="setting-description">
+            Get educational grammar tips with each enhancement to improve your
+            writing skills
+          </p>
+        </div>
+
+        <button id="viewTips" class="secondary-btn">
+          View Grammar Tips Dashboard
+        </button>
+
+        <div class="settings-divider"></div>
+
+        <h2>Interface</h2>
+        <div class="toggle-setting">
+          <label class="toggle-label">
+            <input type="checkbox" id="floatingBrainEnabled" checked />
+            <span class="toggle-slider"></span>
+            <span class="toggle-text">Show Floating Brain Button</span>
+          </label>
+          <p class="setting-description">
+            Toggle the always-visible brain button in the top-right corner. You can still use the keyboard shortcut even when this is off.
+          </p>
+        </div>
+
+        <div class="help">
+          <h3>How to get an API key:</h3>
+          <ol>
+            <li>
+              Go to
+              <a href="https://platform.openai.com" target="_blank"
+                >platform.openai.com</a
+              >
+            </li>
+            <li>Sign in or create an account</li>
+            <li>Navigate to API keys section</li>
+            <li>Create a new secret key</li>
+            <li>Copy and paste it here</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <script src="options.js"></script>
+  </body>
+</html>

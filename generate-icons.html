@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Generate Icons</title>
+  </head>
+  <body>
+    <h1>Smartify Icon Generator</h1>
+    <p>
+      Right-click each canvas and save as PNG with the corresponding filename:
+    </p>
+
+    <div>
+      <h3>icon16.png</h3>
+      <canvas id="icon16" width="16" height="16"></canvas>
+    </div>
+
+    <div>
+      <h3>icon32.png</h3>
+      <canvas id="icon32" width="32" height="32"></canvas>
+    </div>
+
+    <div>
+      <h3>icon48.png</h3>
+      <canvas id="icon48" width="48" height="48"></canvas>
+    </div>
+
+    <div>
+      <h3>icon128.png</h3>
+      <canvas id="icon128" width="128" height="128"></canvas>
+    </div>
+
+    <script>
+      function drawIcon(canvasId, size) {
+        const canvas = document.getElementById(canvasId);
+        const ctx = canvas.getContext("2d");
+
+        // White background with rounded corners
+        ctx.fillStyle = "#f8f9fa";
+        ctx.beginPath();
+        ctx.roundRect(0, 0, size, size, size * 0.2);
+        ctx.fill();
+
+        // Draw brain emoji
+        ctx.font = `${size * 0.7}px Arial`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("🧠", size / 2, size / 2);
+      }
+
+      // Generate all icons
+      drawIcon("icon16", 16);
+      drawIcon("icon32", 32);
+      drawIcon("icon48", 48);
+      drawIcon("icon128", 128);
+    </script>
+  </body>
+</html>

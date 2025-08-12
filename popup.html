@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="popup-container">
+      <h1>🧠 Smartify</h1>
+      <p>
+        Click the brain icon next to any text field to enhance your writing with
+        AI.
+      </p>
+
+      <p style="font-size: 12px; color: #888; margin-top: 10px">
+        💡 Tip: Use the floating brain button in the top-right corner or press
+        <kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>E</kbd> (Mac) or
+        <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>E</kbd> (Win/Linux) to enhance any
+        text!
+      </p>
+
+      <div class="enhance-section">
+        <textarea
+          id="enhance-input"
+          placeholder="Type or paste text here to enhance..."
+          rows="4"
+        ></textarea>
+        <div class="enhance-controls">
+          <button id="enhance-btn" class="enhance-btn">🧠 Enhance Text</button>
+          <span class="enhance-hint" id="enhance-hint"
+            >or press <kbd>Ctrl</kbd>+<kbd>Enter</kbd></span
+          >
+        </div>
+        <div id="enhance-result" class="enhance-result" style="display: none">
+          <div class="result-header">
+            <span>Enhanced:</span>
+            <button id="copy-btn" class="copy-btn">📋 Copy</button>
+          </div>
+          <div id="result-text" class="result-text"></div>
+          <div id="grammar-tip" class="grammar-tip" style="display: none">
+            <h4>💡 Grammar Tip</h4>
+            <p id="tip-text"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats" id="stats">
+        <div class="stat">
+          <span class="stat-label">Status:</span>
+          <span class="stat-value" id="status">Active</span>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button id="settings-btn" class="settings-btn">Settings</button>
+        <button id="dashboard-btn" class="settings-btn">📚 Grammar Tips</button>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
